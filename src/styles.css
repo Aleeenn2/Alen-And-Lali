@@ -1,0 +1,123 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-rose-deep: var(--rose-deep);
+  --color-rose-soft: var(--rose-soft);
+  --color-blush: var(--blush);
+  --color-cream: var(--cream);
+  --color-heart: var(--heart);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Soft pink romantic palette */
+  --cream: oklch(0.985 0.012 60);
+  --blush: oklch(0.95 0.03 15);
+  --rose-soft: oklch(0.86 0.06 12);
+  --rose-deep: oklch(0.62 0.13 10);
+  --heart: oklch(0.58 0.18 18);
+  --plum: oklch(0.32 0.07 10);
+
+  --background: var(--cream);
+  --foreground: var(--plum);
+  --card: oklch(0.99 0.008 30);
+  --card-foreground: var(--plum);
+  --popover: var(--card);
+  --popover-foreground: var(--plum);
+  --primary: var(--rose-deep);
+  --primary-foreground: var(--cream);
+  --secondary: var(--blush);
+  --secondary-foreground: var(--plum);
+  --muted: oklch(0.94 0.02 20);
+  --muted-foreground: oklch(0.5 0.05 15);
+  --accent: var(--rose-soft);
+  --accent-foreground: var(--plum);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.9 0.025 18);
+  --input: oklch(0.92 0.02 18);
+  --ring: var(--rose-deep);
+
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-body: "Karla", "Inter", system-ui, sans-serif;
+
+  --gradient-romance: linear-gradient(
+    135deg,
+    oklch(0.97 0.018 30) 0%,
+    oklch(0.93 0.04 12) 50%,
+    oklch(0.88 0.06 8) 100%
+  );
+  --shadow-soft: 0 20px 60px -20px color-mix(in oklab, var(--rose-deep) 25%, transparent);
+}
+
+.dark {
+  /* keep same warm palette — no dark mode for this site */
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    background: var(--gradient-romance);
+    background-attachment: fixed;
+    color: var(--foreground);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Spider lily gentle breathing */
+@keyframes lily-breathe {
+  0%, 100% { transform: scale(1) rotate(-1deg); }
+  50% { transform: scale(1.04) rotate(1deg); }
+}
+.animate-lily { animation: lily-breathe 9s ease-in-out infinite; }
+
+/* Heart float */
+@keyframes heart-float {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: var(--heart-opacity, 0.55); }
+  90% { opacity: var(--heart-opacity, 0.55); }
+  100% { transform: translateY(-110vh) translateX(var(--drift, 40px)) rotate(20deg); opacity: 0; }
+}
+
+/* Marquee for long track titles */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

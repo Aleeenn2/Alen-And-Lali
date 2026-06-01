@@ -1,0 +1,17 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
+
+// Relative base + hash routing (see src/main.tsx) lets the built site run from
+// any path, so it works on GitHub Pages without knowing the repository name.
+export default defineConfig({
+  base: "./",
+  plugins: [
+    tsConfigPaths(),
+    tanstackRouter({ target: "react", autoCodeSplitting: true }),
+    react(),
+    tailwindcss(),
+  ],
+});
